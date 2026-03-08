@@ -1,82 +1,38 @@
 
-/* CURSOR TRAIL */
+const glow = document.querySelector(".cursor-glow")
+const crystal = document.querySelector(".crystal")
 
-const canvas = document.getElementById("cursor-trail")
-const ctx = canvas.getContext("2d")
-
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
-
-let particles = []
+/* cursor glow movement */
 
 document.addEventListener("mousemove", e => {
 
-particles.push({
-
-x:e.clientX,
-
-y:e.clientY,
-
-life:100
-
-})
+glow.style.left = e.clientX + "px"
+glow.style.top = e.clientY + "px"
 
 })
 
 
-function animate(){
+/* crystal follows mouse */
 
-ctx.clearRect(0,0,canvas.width,canvas.height)
+document.addEventListener("mousemove", e => {
 
-particles.forEach((p,i)=>{
+let x = (window.innerWidth/2 - e.clientX) / 20
+let y = (window.innerHeight/2 - e.clientY) / 20
 
-ctx.beginPath()
-
-ctx.arc(p.x,p.y,6,0,Math.PI*2)
-
-ctx.fillStyle="rgba(120,200,255,.4)"
-
-ctx.fill()
-
-p.life--
-
-if(p.life<=0){
-
-particles.splice(i,1)
-
-}
+crystal.style.transform =
+`rotateY(${x}deg) rotateX(${y}deg)`
 
 })
 
-requestAnimationFrame(animate)
 
-}
+/* scroll parallax */
 
-animate()
-
-
-
-/* CRYSTAL SCROLL MOTION */
-
-const crystal = document.querySelector(".crystal")
-
-window.addEventListener("scroll",()=>{
+window.addEventListener("scroll", () => {
 
 let scroll = window.scrollY
 
-crystal.style.transform =
-
-`rotateY(${scroll*.15}deg) rotateX(${scroll*.1}deg)`
-
-})
-
-
-/* PARALLAX LIGHT */
-
-document.addEventListener("mousemove", e => {
-
 crystal.style.transform +=
 
-` translate(${e.clientX/200}px,${e.clientY/200}px)`
+` translateY(${scroll*.15}px)`
 
 })
