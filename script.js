@@ -1,23 +1,82 @@
-const bracelet = document.querySelector(".bracelet-visual img")
+
+/* CURSOR TRAIL */
+
+const canvas = document.getElementById("cursor-trail")
+const ctx = canvas.getContext("2d")
+
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight
+
+let particles = []
 
 document.addEventListener("mousemove", e => {
 
-let x = (window.innerWidth/2 - e.pageX) / 40
-let y = (window.innerHeight/2 - e.pageY) / 40
+particles.push({
 
-bracelet.style.transform =
-`rotateY(${x}deg) rotateX(${y}deg)`
+x:e.clientX,
+
+y:e.clientY,
+
+life:100
+
+})
 
 })
 
 
-/* parallax glow */
+function animate(){
 
-const glow = document.querySelector(".crystal-glow")
+ctx.clearRect(0,0,canvas.width,canvas.height)
 
-document.addEventListener("mousemove", e =>{
+particles.forEach((p,i)=>{
 
-glow.style.transform =
-`translate(${e.clientX/40}px, ${e.clientY/40}px)`
+ctx.beginPath()
+
+ctx.arc(p.x,p.y,6,0,Math.PI*2)
+
+ctx.fillStyle="rgba(120,200,255,.4)"
+
+ctx.fill()
+
+p.life--
+
+if(p.life<=0){
+
+particles.splice(i,1)
+
+}
+
+})
+
+requestAnimationFrame(animate)
+
+}
+
+animate()
+
+
+
+/* CRYSTAL SCROLL MOTION */
+
+const crystal = document.querySelector(".crystal")
+
+window.addEventListener("scroll",()=>{
+
+let scroll = window.scrollY
+
+crystal.style.transform =
+
+`rotateY(${scroll*.15}deg) rotateX(${scroll*.1}deg)`
+
+})
+
+
+/* PARALLAX LIGHT */
+
+document.addEventListener("mousemove", e => {
+
+crystal.style.transform +=
+
+` translate(${e.clientX/200}px,${e.clientY/200}px)`
 
 })
