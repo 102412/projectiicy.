@@ -1,0 +1,209 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: 'Inter', sans-serif;
+}
+
+body{
+background:#05070d;
+color:white;
+overflow-x:hidden;
+}
+
+/* floating background light */
+
+.crystal-glow{
+position:absolute;
+width:900px;
+height:900px;
+
+background:
+radial-gradient(circle at center,
+rgba(70,160,255,.5),
+transparent 60%);
+
+filter:blur(160px);
+
+top:-200px;
+left:50%;
+transform:translateX(-50%);
+z-index:-1;
+}
+
+/* noise texture */
+
+.noise{
+position:fixed;
+width:100%;
+height:100%;
+
+background:url("https://grainy-gradients.vercel.app/noise.svg");
+opacity:.15;
+pointer-events:none;
+}
+
+/* navbar */
+
+.nav{
+display:flex;
+justify-content:space-between;
+padding:25px 60px;
+align-items:center;
+}
+
+.logo{
+font-weight:800;
+letter-spacing:3px;
+}
+
+nav a{
+margin-left:25px;
+color:#cfe8ff;
+text-decoration:none;
+opacity:.8;
+}
+
+nav a:hover{
+opacity:1;
+}
+
+/* hero */
+
+.hero{
+height:90vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+position:relative;
+}
+
+.title{
+font-size:72px;
+font-weight:800;
+letter-spacing:-2px;
+
+background:linear-gradient(
+90deg,
+white,
+#8ecbff
+);
+
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.subtitle{
+margin-top:10px;
+color:#8fa6c2;
+}
+
+.cta{
+margin-top:25px;
+padding:14px 28px;
+
+border-radius:12px;
+border:1px solid rgba(255,255,255,.2);
+
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(20px);
+
+color:white;
+cursor:pointer;
+}
+
+.cta:hover{
+background:rgba(255,255,255,.15);
+}
+
+/* bracelet visual */
+
+.bracelet-visual{
+margin-top:50px;
+}
+
+.bracelet-visual img{
+width:350px;
+filter:drop-shadow(0 0 40px rgba(120,200,255,.5));
+transition:transform .4s;
+}
+
+/* products */
+
+.products{
+padding:120px 10%;
+}
+
+.products h2{
+font-size:32px;
+margin-bottom:40px;
+}
+
+.product-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:30px;
+}
+
+.product{
+
+background:rgba(255,255,255,.05);
+
+border-radius:18px;
+
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.1);
+
+padding:25px;
+
+text-align:center;
+
+transition:.3s;
+}
+
+.product:hover{
+
+transform:translateY(-10px);
+
+box-shadow:
+
+0 0 25px rgba(120,200,255,.3),
+
+0 0 60px rgba(120,200,255,.2);
+}
+
+.product img{
+width:100%;
+margin-bottom:15px;
+}
+
+/* footer */
+
+footer{
+margin-top:120px;
+padding:60px;
+text-align:center;
+color:#7a8ca6;
+}
+
+.footer-logo{
+font-weight:700;
+margin-bottom:10px;
+}
+
+/* mobile */
+
+@media(max-width:800px){
+
+.title{
+font-size:42px;
+}
+
+.nav{
+padding:20px;
+}
+
+}
